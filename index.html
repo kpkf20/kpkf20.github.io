@@ -24,6 +24,9 @@ a:focus-visible,button:focus-visible{outline:3px solid #1D4ED8;outline-offset:2p
 .branch-row td:first-child{font-weight:700;color:var(--accent)}
 .branch-row td:nth-child(2){font-weight:500;color:#0F2A4A}
 @media (max-width:640px){h1{font-size:36px!important}h2{font-size:30px!important}}
+.about-toggle{padding:32px 28px;border-radius:14px;display:flex;flex-direction:column;align-items:flex-start;gap:10px;min-height:180px;text-align:left;font-family:inherit;color:#0F2A4A;cursor:pointer;background:#FFFFFF;border:1px solid #E3E7ED}
+.about-toggle[aria-expanded="true"]{background:#F4F6F9;border:2px solid #0F2A4A;padding:31px 27px}
+#greeting[hidden],#vision[hidden]{display:none!important}
 </style>
 </head>
 <body>
@@ -52,7 +55,7 @@ a:focus-visible,button:focus-visible{outline:3px solid #1D4ED8;outline-offset:2p
 <section id="top" style="background: #0F2A4A; color: #FFFFFF">
 <div style="max-width: 1240px; margin: 0 auto; padding: 96px 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 56px; align-items: center">
 <div style="display: flex; flex-direction: column; gap: 24px">
-<span style="font-size: 15px; font-weight: 700; color: #FDBA74; letter-spacing: 0.04em">[협회 슬로건 한 줄]</span>
+<span style="font-size: 15px; font-weight: 700; color: #FDBA74; letter-spacing: 0.04em">건강한 신체 , 따뜻한 친목 , 보람찬인생&nbsp;</span>
 <h1 style="margin: 0; font-size: 52px; line-height: 1.25; font-weight: 800; letter-spacing: -0.03em">전문 자격으로 여는<br>새로운 경력의 시작</h1>
 <p style="margin: 0; font-size: 18px; color: #D5DCE6; max-width: 520px">대한민국 파크골프 연맹은 파크골프 분야의 전문 인력 양성과 자격 검정을 통해 [협회 설립 목적 한두 문장]을 위해 노력하고 있습니다.</p>
 <div style="display: flex; flex-wrap: wrap; gap: 12px; padding-top: 8px">
@@ -81,7 +84,13 @@ a:focus-visible,button:focus-visible{outline:3px solid #1D4ED8;outline-offset:2p
 </div>
 <p style="margin: 0; max-width: 520px; font-size: 17px; color: #5A6472">대한민국 파크골프 연맹은 [설립 연도]에 설립되어 [주요 활동 분야]의 발전과 전문 인력 양성에 힘쓰고 있습니다.</p>
 </div>
-<div id="greeting" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 56px; align-items: start; padding: 48px; border-radius: 20px; background: #F4F6F9">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px">
+<button type="button" class="about-toggle" data-panel="greeting" aria-expanded="false" aria-controls="greeting"><span style="font-size: 14px; font-weight: 700; color: #8A94A3">01</span><strong style="font-size: 21px">인사말</strong><span style="font-size: 15px; color: #5A6472">회장 인사와 협회가 지향하는 가치</span><span style="margin-top: auto; font-size: 14px; font-weight: 700; color: var(--accent)"><span class="toggle-label">자세히 보기 +</span></span></button>
+<button type="button" class="about-toggle" data-panel="vision" aria-expanded="false" aria-controls="vision"><span style="font-size: 14px; font-weight: 700; color: #8A94A3">02</span><strong style="font-size: 21px">설립목적 · 비전</strong><span style="font-size: 15px; color: #5A6472">협회의 설립 취지와 중장기 비전</span><span style="margin-top: auto; font-size: 14px; font-weight: 700; color: var(--accent)"><span class="toggle-label">자세히 보기 +</span></span></button>
+<a href="#" style="padding: 32px 28px; border-radius: 14px; border: 1px solid #E3E7ED; display: flex; flex-direction: column; gap: 10px; min-height: 180px"><span style="font-size: 14px; font-weight: 700; color: #8A94A3">03</span><strong style="font-size: 21px">연혁 · 조직도</strong><span style="font-size: 15px; color: #5A6472">걸어온 길과 협회 조직 구성</span></a>
+<a href="#" style="padding: 32px 28px; border-radius: 14px; border: 1px solid #E3E7ED; display: flex; flex-direction: column; gap: 10px; min-height: 180px"><span style="font-size: 14px; font-weight: 700; color: #8A94A3">04</span><strong style="font-size: 21px">오시는 길</strong><span style="font-size: 15px; color: #5A6472">본회 위치와 교통편 안내</span></a>
+</div>
+<div id="greeting" hidden style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 56px; align-items: start; margin-top: -16px; padding: 48px; border-radius: 20px; background: #F4F6F9">
 <figure style="margin: 0; display: flex; flex-direction: column; align-items: center; gap: 20px; text-align: center">
 <div style="position: relative; width: 100%; max-width: 280px">
 <img src="president.jpg" alt="대한민국파워지식교육협회 총회장 백옥례" style="display: block; width: 100%; aspect-ratio: 239 / 265; object-fit: cover; border-radius: 18px; border: 6px solid #FFFFFF; box-sizing: border-box">
@@ -102,7 +111,7 @@ a:focus-visible,button:focus-visible{outline:3px solid #1D4ED8;outline-offset:2p
 <p style="margin: 0; padding-top: 8px; text-align: right; font-size: 18px; font-weight: 700; color: #0F2A4A">대한민국파워지식교육협회 총회장 백 옥 례 배상</p>
 </div>
 </div>
-<div id="vision" style="display: flex; flex-direction: column; gap: 28px">
+<div id="vision" hidden style="display: flex; flex-direction: column; gap: 28px; margin-top: -16px; padding: 48px; border-radius: 20px; background: #F4F6F9">
 <div style="display: flex; flex-direction: column; gap: 8px">
 <h3 style="margin: 0; font-size: 28px; font-weight: 800; letter-spacing: -0.03em">설립목적 · 비전</h3>
 <p style="margin: 0; font-size: 16px; color: #5A6472">건강, 화합, 일자리. 협회가 지키는 세 가지 핵심 가치입니다.</p>
@@ -133,12 +142,6 @@ a:focus-visible,button:focus-visible{outline:3px solid #1D4ED8;outline-offset:2p
 <div style="margin-top: auto; padding-top: 20px; border-top: 1px solid #EEF1F5; display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700; color: #047857"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg>협회 핵심 실천 규약</div>
 </article>
 </div>
-</div>
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px">
-<a href="#greeting" style="padding: 32px 28px; border-radius: 14px; border: 1px solid #E3E7ED; display: flex; flex-direction: column; gap: 10px; min-height: 180px"><span style="font-size: 14px; font-weight: 700; color: #8A94A3">01</span><strong style="font-size: 21px">인사말</strong><span style="font-size: 15px; color: #5A6472">회장 인사와 협회가 지향하는 가치</span></a>
-<a href="#vision" style="padding: 32px 28px; border-radius: 14px; border: 1px solid #E3E7ED; display: flex; flex-direction: column; gap: 10px; min-height: 180px"><span style="font-size: 14px; font-weight: 700; color: #8A94A3">02</span><strong style="font-size: 21px">설립목적 · 비전</strong><span style="font-size: 15px; color: #5A6472">협회의 설립 취지와 중장기 비전</span></a>
-<a href="#" style="padding: 32px 28px; border-radius: 14px; border: 1px solid #E3E7ED; display: flex; flex-direction: column; gap: 10px; min-height: 180px"><span style="font-size: 14px; font-weight: 700; color: #8A94A3">03</span><strong style="font-size: 21px">연혁 · 조직도</strong><span style="font-size: 15px; color: #5A6472">걸어온 길과 협회 조직 구성</span></a>
-<a href="#" style="padding: 32px 28px; border-radius: 14px; border: 1px solid #E3E7ED; display: flex; flex-direction: column; gap: 10px; min-height: 180px"><span style="font-size: 14px; font-weight: 700; color: #8A94A3">04</span><strong style="font-size: 21px">오시는 길</strong><span style="font-size: 15px; color: #5A6472">본회 위치와 교통편 안내</span></a>
 </div>
 </section>
 
@@ -271,6 +274,20 @@ Object.keys(BRANCHES).forEach(name => {
   regionBox.appendChild(b);
 });
 showRegion("서울");
+
+/* 협회소개 01·02 카드: 누르면 펼치고 다시 누르면 접기 */
+document.querySelectorAll(".about-toggle").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const opening = btn.getAttribute("aria-expanded") !== "true";
+    document.querySelectorAll(".about-toggle").forEach(b => {
+      const on = opening && b === btn;
+      b.setAttribute("aria-expanded", on ? "true" : "false");
+      b.querySelector(".toggle-label").textContent = on ? "닫기 −" : "자세히 보기 +";
+      document.getElementById(b.dataset.panel).hidden = !on;
+    });
+  });
+});
+
 </script>
 </body>
 </html>
