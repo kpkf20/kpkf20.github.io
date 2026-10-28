@@ -26,7 +26,7 @@ a:focus-visible,button:focus-visible{outline:3px solid #1D4ED8;outline-offset:2p
 @media (max-width:640px){h1{font-size:36px!important}h2{font-size:30px!important}}
 .about-toggle{padding:32px 28px;border-radius:14px;display:flex;flex-direction:column;align-items:flex-start;gap:10px;min-height:180px;text-align:left;font-family:inherit;color:#0F2A4A;cursor:pointer;background:#FFFFFF;border:1px solid #E3E7ED}
 .about-toggle[aria-expanded="true"]{background:#F4F6F9;border:2px solid #0F2A4A;padding:31px 27px}
-#greeting[hidden],#vision[hidden]{display:none!important}
+#greeting[hidden],#vision[hidden],#history[hidden]{display:none!important}
 </style>
 </head>
 <body>
@@ -87,7 +87,7 @@ a:focus-visible,button:focus-visible{outline:3px solid #1D4ED8;outline-offset:2p
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px">
 <button type="button" class="about-toggle" data-panel="greeting" aria-expanded="false" aria-controls="greeting"><span style="font-size: 14px; font-weight: 700; color: #8A94A3">01</span><strong style="font-size: 21px">인사말</strong><span style="font-size: 15px; color: #5A6472">회장 인사와 협회가 지향하는 가치</span><span style="margin-top: auto; font-size: 14px; font-weight: 700; color: var(--accent)"><span class="toggle-label">자세히 보기 +</span></span></button>
 <button type="button" class="about-toggle" data-panel="vision" aria-expanded="false" aria-controls="vision"><span style="font-size: 14px; font-weight: 700; color: #8A94A3">02</span><strong style="font-size: 21px">설립목적 · 비전</strong><span style="font-size: 15px; color: #5A6472">협회의 설립 취지와 중장기 비전</span><span style="margin-top: auto; font-size: 14px; font-weight: 700; color: var(--accent)"><span class="toggle-label">자세히 보기 +</span></span></button>
-<a href="#" style="padding: 32px 28px; border-radius: 14px; border: 1px solid #E3E7ED; display: flex; flex-direction: column; gap: 10px; min-height: 180px"><span style="font-size: 14px; font-weight: 700; color: #8A94A3">03</span><strong style="font-size: 21px">연혁 · 조직도</strong><span style="font-size: 15px; color: #5A6472">걸어온 길과 협회 조직 구성</span></a>
+<button type="button" class="about-toggle" data-panel="history" aria-expanded="false" aria-controls="history"><span style="font-size: 14px; font-weight: 700; color: #8A94A3">03</span><strong style="font-size: 21px">연혁 · 조직도</strong><span style="font-size: 15px; color: #5A6472">걸어온 길과 협회 조직 구성</span><span style="margin-top: auto; font-size: 14px; font-weight: 700; color: var(--accent)"><span class="toggle-label">자세히 보기 +</span></span></button>
 <a href="#" style="padding: 32px 28px; border-radius: 14px; border: 1px solid #E3E7ED; display: flex; flex-direction: column; gap: 10px; min-height: 180px"><span style="font-size: 14px; font-weight: 700; color: #8A94A3">04</span><strong style="font-size: 21px">오시는 길</strong><span style="font-size: 15px; color: #5A6472">본회 위치와 교통편 안내</span></a>
 </div>
 <div id="greeting" hidden style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 56px; align-items: start; margin-top: -16px; padding: 48px; border-radius: 20px; background: #F4F6F9">
@@ -141,6 +141,44 @@ a:focus-visible,button:focus-visible{outline:3px solid #1D4ED8;outline-offset:2p
 <p style="margin: 0; font-size: 16px; color: #3B4552; line-height: 1.75">체계적인 공인 자격 교육을 통해 은퇴자와 시니어들에게 공공·민간 체육시설 전문 지도자 취업의 길을 열어드립니다.</p>
 <div style="margin-top: auto; padding-top: 20px; border-top: 1px solid #EEF1F5; display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700; color: #047857"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg>협회 핵심 실천 규약</div>
 </article>
+</div>
+</div>
+<div id="history" hidden style="margin-top: -16px; padding: 48px; border-radius: 20px; background: #F4F6F9; display: flex; flex-direction: column; gap: 32px">
+<h3 style="margin: 0; display: flex; align-items: center; gap: 12px; font-size: 28px; font-weight: 800; letter-spacing: -0.03em"><svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#047857" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"></rect><path d="M16 2v4M8 2v4M3 10h18"></path></svg>협회 주요 연혁</h3>
+<div style="position: relative">
+<span aria-hidden="true" style="position: absolute; left: 11px; top: 8px; bottom: 8px; width: 2px; background: #A7F3D0"></span>
+<ol style="position: relative; margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 32px">
+<li style="position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; padding-left: 40px">
+<span aria-hidden="true" style="position: absolute; left: 3px; top: 4px; width: 18px; height: 18px; border-radius: 50%; background: #047857; border: 4px solid #FFFFFF; box-shadow: 0 0 0 1px #A7F3D0; box-sizing: border-box"></span>
+<span style="padding: 2px 12px; border-radius: 6px; background: #D1FAE5; color: #065F46; font-size: 14px; font-weight: 800">2021</span>
+<p style="margin: 0; font-size: 17px; font-weight: 700; color: #0F2A4A; line-height: 1.6">대한민국파워지식교육협회 설립 및 파크골프 표준화 교육 연구회 발족</p>
+</li>
+<li style="position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; padding-left: 40px">
+<span aria-hidden="true" style="position: absolute; left: 3px; top: 4px; width: 18px; height: 18px; border-radius: 50%; background: #047857; border: 4px solid #FFFFFF; box-shadow: 0 0 0 1px #A7F3D0; box-sizing: border-box"></span>
+<span style="padding: 2px 12px; border-radius: 6px; background: #D1FAE5; color: #065F46; font-size: 14px; font-weight: 800">2022</span>
+<p style="margin: 0; font-size: 17px; font-weight: 700; color: #0F2A4A; line-height: 1.6">파크골프 지도자 1급, 강사트레이너 1급, 심판 1급 직업능력연구원 등록</p>
+</li>
+<li style="position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; padding-left: 40px">
+<span aria-hidden="true" style="position: absolute; left: 3px; top: 4px; width: 18px; height: 18px; border-radius: 50%; background: #047857; border: 4px solid #FFFFFF; box-shadow: 0 0 0 1px #A7F3D0; box-sizing: border-box"></span>
+<span style="padding: 2px 12px; border-radius: 6px; background: #D1FAE5; color: #065F46; font-size: 14px; font-weight: 800">2023</span>
+<p style="margin: 0; font-size: 17px; font-weight: 700; color: #0F2A4A; line-height: 1.6">수도권 중앙교육원 확장 이전 및 누적 수료생 5,000명 돌파</p>
+</li>
+<li style="position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; padding-left: 40px">
+<span aria-hidden="true" style="position: absolute; left: 3px; top: 4px; width: 18px; height: 18px; border-radius: 50%; background: #047857; border: 4px solid #FFFFFF; box-shadow: 0 0 0 1px #A7F3D0; box-sizing: border-box"></span>
+<span style="padding: 2px 12px; border-radius: 6px; background: #D1FAE5; color: #065F46; font-size: 14px; font-weight: 800">2026. 04</span>
+<p style="margin: 0; font-size: 17px; font-weight: 700; color: #0F2A4A; line-height: 1.6">대구지사 공식 창립 출범식 및 영남권 아카데미 개설</p>
+</li>
+<li style="position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; padding-left: 40px">
+<span aria-hidden="true" style="position: absolute; left: 3px; top: 4px; width: 18px; height: 18px; border-radius: 50%; background: #047857; border: 4px solid #FFFFFF; box-shadow: 0 0 0 1px #A7F3D0; box-sizing: border-box"></span>
+<span style="padding: 2px 12px; border-radius: 6px; background: #D1FAE5; color: #065F46; font-size: 14px; font-weight: 800">2026. 08</span>
+<p style="margin: 0; font-size: 17px; font-weight: 700; color: #0F2A4A; line-height: 1.6">전남지사(순천·호남거점) 협약 체결 및 제1기 수강생 배출</p>
+</li>
+<li style="position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; padding-left: 40px">
+<span aria-hidden="true" style="position: absolute; left: 3px; top: 4px; width: 18px; height: 18px; border-radius: 50%; background: #047857; border: 4px solid #FFFFFF; box-shadow: 0 0 0 1px #A7F3D0; box-sizing: border-box"></span>
+<span style="padding: 2px 12px; border-radius: 6px; background: #D1FAE5; color: #065F46; font-size: 14px; font-weight: 800">2026. 09</span>
+<p style="margin: 0; font-size: 17px; font-weight: 700; color: #0F2A4A; line-height: 1.6">누적 공인 지도자·심판 12,500명 돌파 및 부산경남·충청강원 지사 확대 추진</p>
+</li>
+</ol>
 </div>
 </div>
 </section>
