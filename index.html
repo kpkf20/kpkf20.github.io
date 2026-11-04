@@ -62,6 +62,8 @@ a:focus-visible,button:focus-visible{outline:3px solid #1D4ED8;outline-offset:2p
 .verify-ok{background:#D1FAE5;color:#065F46}
 .verify-no{background:#FEF2F2;color:#991B1B}
 .link-btn{align-self:flex-start;border:0;background:transparent;padding:6px 0;font-family:inherit;font-size:15px;font-weight:700;color:#0F2A4A;text-decoration:underline;cursor:pointer}
+#notices summary::-webkit-details-marker{display:none}
+#notices summary:hover strong{color:#C2410C}
 </style>
 </head>
 <body>
@@ -106,7 +108,7 @@ a:focus-visible,button:focus-visible{outline:3px solid #1D4ED8;outline-offset:2p
 <a href="#courses" style="padding: 28px 20px; display: flex; flex-direction: column; gap: 4px"><strong style="font-size: 17px">자격검정 일정</strong><span style="font-size: 14px; color: #5A6472">시험 일정과 접수 기간 확인</span></a>
 <button type="button" id="verify-open" style="padding: 28px 20px; display: flex; flex-direction: column; align-items: flex-start; gap: 4px; border: 0; background: transparent; font-family: inherit; color: #0F2A4A; text-align: left; cursor: pointer"><strong style="font-size: 17px">자격증 조회</strong><span style="font-size: 14px; color: #5A6472">자격 취득 여부 확인</span></button>
 <a href="#branches" style="padding: 28px 20px; display: flex; flex-direction: column; gap: 4px"><strong style="font-size: 17px">교육기관 찾기</strong><span style="font-size: 14px; color: #5A6472">지역별 지사·교육원 안내</span></a>
-<a href="#share" style="padding: 28px 20px; display: flex; flex-direction: column; gap: 4px"><strong style="font-size: 17px">서식 다운로드</strong><span style="font-size: 14px; color: #5A6472">신청서·각종 양식 자료</span></a>
+<a href="#notices" style="padding: 28px 20px; display: flex; flex-direction: column; gap: 4px"><strong style="font-size: 17px">공지사항</strong><span style="font-size: 14px; color: #5A6472">협회 소식과 주요 안내</span></a>
 </div>
 </section>
 
@@ -320,13 +322,80 @@ a:focus-visible,button:focus-visible{outline:3px solid #1D4ED8;outline-offset:2p
 <h2 style="margin: 0; font-size: 38px; font-weight: 800; letter-spacing: -0.03em">공유</h2>
 </div>
 <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px">
-<a href="#" style="background: #FFFFFF; border-radius: 16px; padding: 28px; display: flex; flex-direction: column; gap: 8px; min-height: 140px"><strong style="font-size: 19px">공지사항</strong><span style="font-size: 14px; color: #5A6472">협회 소식과 주요 안내</span></a>
+<a href="#notices" style="background: #FFFFFF; border-radius: 16px; padding: 28px; display: flex; flex-direction: column; gap: 8px; min-height: 140px"><strong style="font-size: 19px">공지사항</strong><span style="font-size: 14px; color: #5A6472">협회 소식과 주요 안내</span></a>
 <a href="#" style="background: #FFFFFF; border-radius: 16px; padding: 28px; display: flex; flex-direction: column; gap: 8px; min-height: 140px"><strong style="font-size: 19px">자료실</strong><span style="font-size: 14px; color: #5A6472">교육 자료와 서식 다운로드</span></a>
 <a href="#" style="background: #FFFFFF; border-radius: 16px; padding: 28px; display: flex; flex-direction: column; gap: 8px; min-height: 140px"><strong style="font-size: 19px">갤러리</strong><span style="font-size: 14px; color: #5A6472">행사·교육 현장 사진</span></a>
-<a href="#" style="background: #FFFFFF; border-radius: 16px; padding: 28px; display: flex; flex-direction: column; gap: 8px; min-height: 140px"><strong style="font-size: 19px">자유게시판</strong><span style="font-size: 14px; color: #5A6472">회원 간 정보 공유</span></a>
+<a href="https://open.kakao.com/o/gaPf6BHi" target="_blank" rel="noopener" style="background: #FEE500; border-radius: 16px; padding: 28px; display: flex; flex-direction: column; gap: 8px; min-height: 140px; color: #191919"><strong style="font-size: 19px">카톡 오픈채팅방</strong><span style="font-size: 14px; color: #3C3C3C">회원 간 소통과 정보 공유 ↗</span></a>
 </div>
 </div>
 
+</div>
+</section>
+
+<section id="notices" style="max-width: 1240px; margin: 0 auto; padding: 112px 24px; display: flex; flex-direction: column; gap: 32px">
+<div style="display: flex; flex-direction: column; gap: 12px">
+<span style="font-size: 14px; font-weight: 700; color: var(--accent); letter-spacing: 0.08em">NOTICE</span>
+<h2 style="margin: 0; font-size: 38px; font-weight: 800; letter-spacing: -0.03em">공지사항</h2>
+<p style="margin: 0; font-size: 17px; color: #5A6472">제목을 누르면 자세한 내용을 볼 수 있습니다.</p>
+</div>
+<div style="border-top: 2px solid #0F2A4A">
+<details style="border-bottom: 1px solid #E3E7ED">
+<summary style="list-style: none; cursor: pointer; padding: 24px 8px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px">
+<span style="padding: 4px 12px; border-radius: 6px; background: #FDEBDD; color: #9A3412; font-size: 14px; font-weight: 800">대회</span>
+<strong style="flex: 1; min-width: 240px; font-size: 19px; font-weight: 800">협회장배 파크골프 전국대회 참가자 모집 안내</strong>
+<span style="font-size: 15px; color: #5A6472">대회일 2026.11.28 (토)</span>
+<span aria-hidden="true" style="font-size: 15px; font-weight: 700; color: var(--accent)">자세히 보기 ▾</span>
+</summary>
+<div style="padding: 8px 8px 48px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; align-items: start">
+<img src="notice-tournament.jpg" alt="협회장배 전국대회 포스터. 2026년 11월 28일 토요일, 성주무릉도원 파크골프장" style="width: 100%; max-width: 480px; border-radius: 14px; box-shadow: 0 4px 18px rgba(15, 42, 74, 0.12)">
+<div style="display: flex; flex-direction: column; gap: 32px; font-size: 16px; line-height: 1.7; color: #3B4552">
+<p style="margin: 0">주최 <strong style="color: #0F2A4A">대한민국파워지식교육협회</strong> · 주관 <strong style="color: #0F2A4A">대한민국 파크골프 연맹</strong></p>
+<dl style="margin: 0; display: grid; grid-template-columns: 96px 1fr; gap: 12px 16px">
+<dt style="font-weight: 800; color: #0F2A4A">일시</dt><dd style="margin: 0"><strong style="color: #B91C1C; font-size: 18px">2026년 11월 28일 (토)</strong></dd>
+<dt style="font-weight: 800; color: #0F2A4A">참가대상</dt><dd style="margin: 0">일반 아마추어 파크골프인 <span style="color: #B91C1C">(프로 출전 금지)</span></dd>
+<dt style="font-weight: 800; color: #0F2A4A">장소</dt><dd style="margin: 0">성주무릉도원 파크골프장<br><span style="font-size: 15px; color: #5A6472">경북 성주군 선남면 선노로 188-18</span></dd>
+<dt style="font-weight: 800; color: #0F2A4A">참가인원</dt><dd style="margin: 0">144명</dd>
+<dt style="font-weight: 800; color: #0F2A4A">참가비</dt><dd style="margin: 0"><strong style="color: #0F2A4A">5만원</strong> (라운딩비 + 점심)</dd>
+<dt style="font-weight: 800; color: #0F2A4A">신청기간</dt><dd style="margin: 0">9월 28일 ~ 11월 15일<br><span style="font-size: 15px; color: #B91C1C">선착순 접수, 마감 후 대기 없음</span></dd>
+</dl>
+<div style="padding: 24px; border-radius: 14px; background: #F4F6F9; display: flex; flex-direction: column; gap: 14px">
+<strong style="font-size: 18px; color: #0F2A4A">접수방법 · 개별 문자 접수</strong>
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 12px"><span>백옥례 총회장</span><a href="sms:010-2244-8697" style="font-weight: 800">010-2244-8697</a></div>
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 12px"><span>김건우 총괄본부장</span><a href="sms:010-7528-3582" style="font-weight: 800">010-7528-3582</a></div>
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 12px"><span>오혜경 총괄운영위원장</span><a href="sms:010-5152-3582" style="font-weight: 800">010-5152-3582</a></div>
+<div style="padding-top: 14px; border-top: 1px solid #DDE2E9"><strong style="color: #0F2A4A">입금계좌</strong> 농협 352-1839614-923 (예금주 오혜경)<br><span style="font-size: 15px; color: #B91C1C">입금 후 성명과 성별, 1·2차 시간을 문자로 꼭 보내 주세요.</span></div>
+</div>
+</div>
+<div style="grid-column: 1 / -1; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px">
+<div style="padding: 28px; border-radius: 14px; border: 1px solid #E3E7ED; display: flex; flex-direction: column; gap: 12px">
+<strong style="font-size: 20px; color: #0F2A4A">대회일정</strong>
+<div style="display: grid; grid-template-columns: 130px 1fr; gap: 10px 12px; font-size: 16px">
+<span style="font-weight: 700; color: #1D4ED8">09:00 ~ 11:30</span><span>1차 대회 (72명)</span>
+<span style="font-weight: 700; color: #1D4ED8">12:00 ~ 13:00</span><span>중식</span>
+<span style="font-weight: 700; color: #1D4ED8">13:30 ~ 14:00</span><span>개회식</span>
+<span style="font-weight: 700; color: #1D4ED8">14:00 ~ 16:30</span><span>2차 대회 (72명)</span>
+<span style="font-weight: 700; color: #1D4ED8">16:30 ~</span><span>시상 및 폐회식</span>
+</div>
+</div>
+<div style="padding: 28px; border-radius: 14px; border: 1px solid #E3E7ED; display: flex; flex-direction: column; gap: 12px">
+<strong style="font-size: 20px; color: #0F2A4A">시상내역</strong>
+<div style="display: grid; grid-template-columns: 72px 1fr; gap: 10px 12px; font-size: 16px">
+<span style="font-weight: 800; color: #B91C1C">1등</span><span>상장 + 트로피 + 클럽 (100만원 상당)</span>
+<span style="font-weight: 800; color: #B91C1C">2등</span><span>상장 + 트로피 + 클럽 (80만원 상당)</span>
+<span style="font-weight: 800; color: #B91C1C">3등</span><span>상장 + 트로피 + 클럽 (60만원 상당)</span>
+<span style="font-weight: 800; color: #0F2A4A">4등</span><span>클럽백 + 상금 20만원</span>
+<span style="font-weight: 800; color: #0F2A4A">5등</span><span>상금 10만원</span>
+<span style="font-weight: 800; color: #0F2A4A">6~10등</span><span>파크용품</span>
+</div>
+<p style="margin: 4px 0 0; font-size: 15px; font-weight: 700; color: #0F2A4A">홀인원상 1명 · 알바트로스상 1명 · 행운상 20명</p>
+</div>
+</div>
+<div style="grid-column: 1 / -1; display: flex; flex-direction: column; gap: 10px; font-size: 15px; color: #5A6472">
+<p style="margin: 0"><strong style="color: #0F2A4A">후원</strong> ELLE SPORTS · 빅스타 파크골프 · 파크야 파크골프스크린 · 현대자동차 청호로대리점 정석현 부장 · 코리아모델브랜딩협회 · 웅진프리드라이프 대구 중구지점장 이탁규 · 대한여성파크골프협회 대구지회 · 울엄마손메밀묵 · 대한뉴스방송 · A플러셋 대구안심지사</p>
+<p style="margin: 0; font-size: 17px; color: #0F2A4A"><strong>문의</strong> 김건우 총괄본부장 <a href="tel:010-7528-3582" style="font-weight: 800">010-7528-3582</a></p>
+</div>
+</div>
+</details>
 </div>
 </section>
 
