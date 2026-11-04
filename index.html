@@ -52,6 +52,9 @@ a:focus-visible,button:focus-visible{outline:3px solid #1D4ED8;outline-offset:2p
 .apply-done[hidden]{display:none}
 .apply-done h2{margin:0;font-size:26px;font-weight:800}
 .apply-done p{margin:0;font-size:17px;color:#3B4552;line-height:1.7}
+.field select{min-height:52px;padding:12px 14px;border:1px solid #C9D0DA;border-radius:10px;font-family:inherit;font-size:18px;color:#0F2A4A;background:#FFFFFF}
+.field select:focus{outline:3px solid #1D4ED8;outline-offset:1px;border-color:#1D4ED8}
+.cancel-submit{background:#B91C1C}
 </style>
 </head>
 <body>
@@ -215,7 +218,7 @@ a:focus-visible,button:focus-visible{outline:3px solid #1D4ED8;outline-offset:2p
 <span style="font-size: 14px; font-weight: 700; color: var(--accent); letter-spacing: 0.08em">CERTIFICATION</span>
 <h2 style="margin: 0; font-size: 38px; font-weight: 800; letter-spacing: -0.03em">자격과정</h2>
 </div>
-<a href="#" style="padding: 12px 20px; border-radius: 8px; border: 1px solid #C9D0DA; font-size: 15px; font-weight: 700; background: #FFFFFF">전체 과정 보기</a>
+<div style="display: flex; flex-wrap: wrap; gap: 8px"><a href="#" style="padding: 12px 20px; border-radius: 8px; border: 1px solid #C9D0DA; font-size: 15px; font-weight: 700; background: #FFFFFF">전체 과정 보기</a><button type="button" id="cancel-open" style="min-height: 46px; padding: 12px 20px; border-radius: 8px; border: 1px solid #C9D0DA; background: #FFFFFF; color: #B91C1C; font-family: inherit; font-size: 15px; font-weight: 700; cursor: pointer">신청 취소</button></div>
 </div>
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px">
 <article style="background: #FFFFFF; border-radius: 16px; padding: 32px; display: flex; flex-direction: column; gap: 20px">
@@ -315,6 +318,29 @@ a:focus-visible,button:focus-visible{outline:3px solid #1D4ED8;outline-offset:2p
 <div class="apply-done" id="apply-done" hidden>
 <h2>신청이 접수되었습니다</h2>
 <p>입력하신 전화번호로 담당자가<br>교육 일정을 안내해 드리겠습니다.</p>
+<button type="button" class="apply-submit" data-close style="min-width: 160px; padding: 0 24px">확인</button>
+</div>
+</div>
+</div>
+<div id="cancel-modal" class="modal" hidden>
+<div class="modal-backdrop" data-close></div>
+<div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="cancel-title">
+<button type="button" class="modal-x" data-close aria-label="닫기">×</button>
+<form id="cancel-form" class="apply-form">
+<p class="eyebrow" style="color: #B91C1C">신청 취소</p>
+<h2 id="cancel-title">자격과정 신청 취소</h2>
+<p style="margin: 0; font-size: 15px; color: #5A6472; line-height: 1.6">신청하실 때 적은 이름과 전화번호를 입력해 주세요.</p>
+<label class="field">취소할 과정<select name="취소 과정" required><option value="">과정을 선택해 주세요</option><option>파크골프 지도자 1급</option><option>파크골프 심판 1급</option><option>강사 트레이너</option></select></label>
+<label class="field">이름<input name="이름" required autocomplete="name" placeholder="홍길동"></label>
+<label class="field">전화번호<input type="tel" name="전화번호" required autocomplete="tel" placeholder="예: 010-1234-5678"></label>
+<label class="field">취소 사유 <small>(선택)</small><input name="취소 사유" placeholder="예: 일정이 맞지 않아서"></label>
+<label class="consent"><input type="checkbox" name="개인정보동의" value="동의함" required><span><strong>[필수] 개인정보 수집·이용에 동의합니다.</strong><br>수집 항목: 이름, 전화번호 · 이용 목적: 신청 취소 확인 및 처리 · 보유 기간: 취소 처리 후 3년</span></label>
+<p class="apply-status" id="cancel-status" role="alert"></p>
+<button type="submit" class="apply-submit cancel-submit" id="cancel-submit">신청 취소하기</button>
+</form>
+<div class="apply-done" id="cancel-done" hidden>
+<h2>취소 요청이 접수되었습니다</h2>
+<p>확인 후 입력하신 전화번호로<br>처리 결과를 안내해 드리겠습니다.</p>
 <button type="button" class="apply-submit" data-close style="min-width: 160px; padding: 0 24px">확인</button>
 </div>
 </div>
@@ -424,6 +450,46 @@ document.querySelectorAll(".about-toggle").forEach(btn => {
   });
 });
 
+
+/* 신청 취소서 ─ 신청서와 같은 이메일(APPLY_EMAIL)로 전송됩니다 */
+const cModal = document.getElementById("cancel-modal");
+const cForm = document.getElementById("cancel-form");
+const cDone = document.getElementById("cancel-done");
+const cStatus = document.getElementById("cancel-status");
+const cSubmit = document.getElementById("cancel-submit");
+const cOpenBtn = document.getElementById("cancel-open");
+function openCancel() {
+  cForm.reset(); cStatus.textContent = "";
+  cForm.hidden = false; cDone.hidden = true;
+  cModal.hidden = false; document.body.style.overflow = "hidden";
+  cForm.querySelector("select").focus();
+}
+function closeCancel() { cModal.hidden = true; document.body.style.overflow = ""; cOpenBtn.focus(); }
+cOpenBtn.addEventListener("click", openCancel);
+cModal.addEventListener("click", e => { if (e.target.closest("[data-close]")) closeCancel(); });
+document.addEventListener("keydown", e => { if (e.key === "Escape" && !cModal.hidden) closeCancel(); });
+cForm.addEventListener("submit", async e => {
+  e.preventDefault();
+  cStatus.textContent = "";
+  if (!cForm.checkValidity()) { cForm.reportValidity(); return; }
+  if (!APPLY_EMAIL) { cStatus.textContent = "온라인 접수 준비 중입니다. 협회로 전화 문의해 주세요."; return; }
+  const data = Object.fromEntries(new FormData(cForm));
+  cSubmit.disabled = true; cSubmit.textContent = "보내는 중…";
+  try {
+    const res = await fetch("https://formsubmit.co/ajax/" + encodeURIComponent(APPLY_EMAIL), {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify({ ...data, _subject: "[신청 취소] " + data["취소 과정"] + " - " + data["이름"], _template: "table", _captcha: "false" })
+    });
+    if (!res.ok) throw new Error(res.status);
+    cForm.hidden = true; cDone.hidden = false;
+    cDone.querySelector("button").focus();
+  } catch (err) {
+    cStatus.textContent = "전송하지 못했습니다. 잠시 후 다시 시도하시거나 협회로 전화 문의해 주세요.";
+  } finally {
+    cSubmit.disabled = false; cSubmit.textContent = "신청 취소하기";
+  }
+});
 </script>
 </body>
 </html>
