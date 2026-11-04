@@ -27,6 +27,31 @@ a:focus-visible,button:focus-visible{outline:3px solid #1D4ED8;outline-offset:2p
 .about-toggle{padding:32px 28px;border-radius:14px;display:flex;flex-direction:column;align-items:flex-start;gap:10px;min-height:180px;text-align:left;font-family:inherit;color:#0F2A4A;cursor:pointer;background:#FFFFFF;border:1px solid #E3E7ED}
 .about-toggle[aria-expanded="true"]{background:#F4F6F9;border:2px solid #0F2A4A;padding:31px 27px}
 #greeting[hidden],#vision[hidden],#history[hidden]{display:none!important}
+.apply-btn{margin-top:auto;padding:16px;border-radius:10px;border:0;background:#0F2A4A;color:#FFFFFF;font-family:inherit;font-size:17px;font-weight:700;cursor:pointer}
+.apply-btn:hover{background:#1B3A60}
+.modal{position:fixed;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;padding:16px}
+.modal[hidden]{display:none}
+.modal-backdrop{position:absolute;inset:0;background:rgba(11,31,56,.55)}
+.modal-panel{position:relative;width:100%;max-width:520px;max-height:calc(100% - 32px);overflow-y:auto;background:#FFFFFF;border-radius:20px;padding:36px 32px;box-shadow:0 20px 60px rgba(11,31,56,.3);color:#0F2A4A}
+.modal-x{position:absolute;top:14px;right:14px;width:44px;height:44px;border:0;border-radius:10px;background:transparent;font-size:28px;line-height:1;color:#5A6472;cursor:pointer}
+.modal-x:hover{background:#F4F6F9}
+.apply-form{display:flex;flex-direction:column;gap:18px}
+.apply-form .eyebrow{margin:0;font-size:14px;font-weight:700;color:var(--accent);letter-spacing:.04em}
+.apply-form h2{margin:0;font-size:26px;font-weight:800;letter-spacing:-.03em}
+.field{display:flex;flex-direction:column;gap:6px;font-size:16px;font-weight:700}
+.field input{min-height:52px;padding:12px 14px;border:1px solid #C9D0DA;border-radius:10px;font-family:inherit;font-size:18px;color:#0F2A4A;background:#FFFFFF}
+.field input:focus{outline:3px solid #1D4ED8;outline-offset:1px;border-color:#1D4ED8}
+.field small{font-size:13px;font-weight:500;color:#5A6472}
+.consent{display:flex;gap:10px;align-items:flex-start;padding:14px;border-radius:10px;background:#F4F6F9;font-size:14px;line-height:1.6;color:#3B4552;cursor:pointer}
+.consent input{width:22px;height:22px;margin:2px 0 0;flex-shrink:0;accent-color:#0F2A4A}
+.consent strong{color:#0F2A4A}
+.apply-status{margin:0;font-size:15px;font-weight:700;color:#B91C1C;min-height:1px}
+.apply-submit{min-height:56px;border:0;border-radius:12px;background:var(--accent);color:#FFFFFF;font-family:inherit;font-size:18px;font-weight:800;cursor:pointer}
+.apply-submit:disabled{opacity:.6;cursor:wait}
+.apply-done{display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center;padding:16px 0}
+.apply-done[hidden]{display:none}
+.apply-done h2{margin:0;font-size:26px;font-weight:800}
+.apply-done p{margin:0;font-size:17px;color:#3B4552;line-height:1.7}
 </style>
 </head>
 <body>
@@ -194,25 +219,25 @@ a:focus-visible,button:focus-visible{outline:3px solid #1D4ED8;outline-offset:2p
 </div>
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px">
 <article style="background: #FFFFFF; border-radius: 16px; padding: 32px; display: flex; flex-direction: column; gap: 20px">
-<div style="display: flex; gap: 8px"><span style="padding: 4px 10px; border-radius: 6px; background: #E8EEF6; font-size: 13px; font-weight: 700">민간자격</span><span style="padding: 4px 10px; border-radius: 6px; background: #FDEBDD; color: #9A3412; font-size: 13px; font-weight: 700">1급 · 2급</span></div>
-<h3 style="margin: 0; font-size: 23px; font-weight: 800">[자격과정명 A]</h3>
-<p style="margin: 0; font-size: 15px; color: #5A6472">[과정 소개 한 문장]</p>
-<dl style="margin: 0; display: grid; grid-template-columns: 88px 1fr; gap: 8px 12px; font-size: 15px; padding-top: 16px; border-top: 1px solid #E3E7ED"><dt style="color: #5A6472">교육기간</dt><dd style="margin: 0; font-weight: 500">[00주 / 00시간]</dd><dt style="color: #5A6472">응시자격</dt><dd style="margin: 0; font-weight: 500">[응시 요건]</dd><dt style="color: #5A6472">등록번호</dt><dd style="margin: 0; font-weight: 500">[민간자격 등록번호]</dd></dl>
-<a href="#" style="margin-top: auto; padding: 14px; border-radius: 10px; background: #0F2A4A; color: #FFFFFF; font-weight: 700; text-align: center">과정 상세 · 신청</a>
+<div style="display: flex; gap: 8px"><span style="padding: 4px 10px; border-radius: 6px; background: #E8EEF6; font-size: 13px; font-weight: 700">민간자격</span><span style="padding: 4px 10px; border-radius: 6px; background: #FDEBDD; color: #9A3412; font-size: 13px; font-weight: 700">1급</span></div>
+<h3 style="margin: 0; font-size: 23px; font-weight: 800">파크골프 지도자 1급 <span style="font-size: 16px; font-weight: 700; color: #9A3412; white-space: nowrap">(비용 350,000원)</span></h3>
+<p style="margin: 0; font-size: 15px; color: #5A6472">초·중급자를 체계적으로 티칭하는 파크골프 전문 지도자로 활동</p>
+<dl style="margin: 0; display: grid; grid-template-columns: 88px 1fr; gap: 8px 12px; font-size: 15px; padding-top: 16px; border-top: 1px solid #E3E7ED"><dt style="color: #5A6472">이수시간</dt><dd style="margin: 0; font-weight: 500">이론 3시간 + 실기 4시간</dd><dt style="color: #5A6472">교육대상</dt><dd style="margin: 0; font-weight: 500">파크골프에 관심 있는 자</dd></dl>
+<button type="button" class="apply-btn" data-course="파크골프 지도자 1급">신청하기</button>
 </article>
 <article style="background: #FFFFFF; border-radius: 16px; padding: 32px; display: flex; flex-direction: column; gap: 20px">
-<div style="display: flex; gap: 8px"><span style="padding: 4px 10px; border-radius: 6px; background: #E8EEF6; font-size: 13px; font-weight: 700">민간자격</span><span style="padding: 4px 10px; border-radius: 6px; background: #FDEBDD; color: #9A3412; font-size: 13px; font-weight: 700">1급 · 2급</span></div>
-<h3 style="margin: 0; font-size: 23px; font-weight: 800">[자격과정명 B]</h3>
-<p style="margin: 0; font-size: 15px; color: #5A6472">[과정 소개 한 문장]</p>
-<dl style="margin: 0; display: grid; grid-template-columns: 88px 1fr; gap: 8px 12px; font-size: 15px; padding-top: 16px; border-top: 1px solid #E3E7ED"><dt style="color: #5A6472">교육기간</dt><dd style="margin: 0; font-weight: 500">[00주 / 00시간]</dd><dt style="color: #5A6472">응시자격</dt><dd style="margin: 0; font-weight: 500">[응시 요건]</dd><dt style="color: #5A6472">등록번호</dt><dd style="margin: 0; font-weight: 500">[민간자격 등록번호]</dd></dl>
-<a href="#" style="margin-top: auto; padding: 14px; border-radius: 10px; background: #0F2A4A; color: #FFFFFF; font-weight: 700; text-align: center">과정 상세 · 신청</a>
+<div style="display: flex; gap: 8px"><span style="padding: 4px 10px; border-radius: 6px; background: #E8EEF6; font-size: 13px; font-weight: 700">민간자격</span><span style="padding: 4px 10px; border-radius: 6px; background: #FDEBDD; color: #9A3412; font-size: 13px; font-weight: 700">1급</span></div>
+<h3 style="margin: 0; font-size: 23px; font-weight: 800">파크골프 심판 1급 <span style="font-size: 16px; font-weight: 700; color: #9A3412; white-space: nowrap">(비용 400,000원)</span></h3>
+<p style="margin: 0; font-size: 15px; color: #5A6472">공정하고 신뢰받는 파크골프 대회를 운영하는 공인 경기 심판으로 활동</p>
+<dl style="margin: 0; display: grid; grid-template-columns: 88px 1fr; gap: 8px 12px; font-size: 15px; padding-top: 16px; border-top: 1px solid #E3E7ED"><dt style="color: #5A6472">이수시간</dt><dd style="margin: 0; font-weight: 500">이론 3시간 + 실기 4시간</dd><dt style="color: #5A6472">교육대상</dt><dd style="margin: 0; font-weight: 500">지도자 1급 자격증 소지자</dd></dl>
+<button type="button" class="apply-btn" data-course="파크골프 심판 1급">신청하기</button>
 </article>
 <article style="background: #FFFFFF; border-radius: 16px; padding: 32px; display: flex; flex-direction: column; gap: 20px">
-<div style="display: flex; gap: 8px"><span style="padding: 4px 10px; border-radius: 6px; background: #E8EEF6; font-size: 13px; font-weight: 700">민간자격</span><span style="padding: 4px 10px; border-radius: 6px; background: #FDEBDD; color: #9A3412; font-size: 13px; font-weight: 700">단일등급</span></div>
-<h3 style="margin: 0; font-size: 23px; font-weight: 800">[자격과정명 C]</h3>
-<p style="margin: 0; font-size: 15px; color: #5A6472">[과정 소개 한 문장]</p>
-<dl style="margin: 0; display: grid; grid-template-columns: 88px 1fr; gap: 8px 12px; font-size: 15px; padding-top: 16px; border-top: 1px solid #E3E7ED"><dt style="color: #5A6472">교육기간</dt><dd style="margin: 0; font-weight: 500">[00주 / 00시간]</dd><dt style="color: #5A6472">응시자격</dt><dd style="margin: 0; font-weight: 500">[응시 요건]</dd><dt style="color: #5A6472">등록번호</dt><dd style="margin: 0; font-weight: 500">[민간자격 등록번호]</dd></dl>
-<a href="#" style="margin-top: auto; padding: 14px; border-radius: 10px; background: #0F2A4A; color: #FFFFFF; font-weight: 700; text-align: center">과정 상세 · 신청</a>
+<div style="display: flex; gap: 8px"><span style="padding: 4px 10px; border-radius: 6px; background: #E8EEF6; font-size: 13px; font-weight: 700">민간자격</span><span style="padding: 4px 10px; border-radius: 6px; background: #FDEBDD; color: #9A3412; font-size: 13px; font-weight: 700">1급</span></div>
+<h3 style="margin: 0; font-size: 23px; font-weight: 800">강사 트레이너 <span style="font-size: 16px; font-weight: 700; color: #9A3412; white-space: nowrap">(비용 350,000원)</span></h3>
+<p style="margin: 0; font-size: 15px; color: #5A6472">각 과정에 강사로 출강할 수 있도록 지도</p>
+<dl style="margin: 0; display: grid; grid-template-columns: 88px 1fr; gap: 8px 12px; font-size: 15px; padding-top: 16px; border-top: 1px solid #E3E7ED"><dt style="color: #5A6472">이수시간</dt><dd style="margin: 0; font-weight: 500">1:1 코칭으로 주 1회 3시간 (8주 과정)</dd><dt style="color: #5A6472">교육대상</dt><dd style="margin: 0; font-weight: 500">강사로 활동하고자 하는 자 (단, 본 협회 지도자·심판 자격과정을 이수한 자에 한함)</dd></dl>
+<button type="button" class="apply-btn" data-course="강사 트레이너">신청하기</button>
 </article>
 </div>
 </div>
@@ -271,6 +296,29 @@ a:focus-visible,button:focus-visible{outline:3px solid #1D4ED8;outline-offset:2p
 </div>
 </section>
 
+<div id="apply-modal" class="modal" hidden>
+<div class="modal-backdrop" data-close></div>
+<div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="apply-title">
+<button type="button" class="modal-x" data-close aria-label="닫기">×</button>
+<form id="apply-form" class="apply-form">
+<p class="eyebrow">자격과정 신청</p>
+<h2 id="apply-title">자격과정 신청</h2>
+<input type="hidden" name="과정" id="apply-course">
+<label class="field">이름<input name="이름" required autocomplete="name" placeholder="홍길동"></label>
+<label class="field">생년월일<input name="생년월일" required inputmode="numeric" maxlength="8" pattern="[0-9]{8}" placeholder="예: 19600515" title="숫자 8자리로 입력해 주세요 (예: 19600515)"><small>숫자 8자리로 입력해 주세요</small></label>
+<label class="field">전화번호<input type="tel" name="전화번호" required autocomplete="tel" placeholder="예: 010-1234-5678"></label>
+<label class="field">주소<input name="주소" required autocomplete="street-address" placeholder="예: 서울시 ○○구 ○○로 00"></label>
+<label class="consent"><input type="checkbox" name="개인정보동의" value="동의함" required><span><strong>[필수] 개인정보 수집·이용에 동의합니다.</strong><br>수집 항목: 이름, 생년월일, 전화번호, 주소 · 이용 목적: 자격과정 신청 접수 및 안내 · 보유 기간: 교육 종료 후 3년</span></label>
+<p class="apply-status" id="apply-status" role="alert"></p>
+<button type="submit" class="apply-submit" id="apply-submit">신청하기</button>
+</form>
+<div class="apply-done" id="apply-done" hidden>
+<h2>신청이 접수되었습니다</h2>
+<p>입력하신 전화번호로 담당자가<br>교육 일정을 안내해 드리겠습니다.</p>
+<button type="button" class="apply-submit" data-close style="min-width: 160px; padding: 0 24px">확인</button>
+</div>
+</div>
+</div>
 <footer style="background: #0B1F38; color: #B7C3D3">
 <div style="max-width: 1240px; margin: 0 auto; padding: 56px 24px; display: flex; flex-direction: column; gap: 20px; font-size: 14px">
 <div style="display: flex; flex-wrap: wrap; gap: 24px; color: #FFFFFF; font-weight: 700"><a href="#" style="color: #FFFFFF">개인정보처리방침</a><a href="#" style="color: #FFFFFF">이용약관</a><a href="#" style="color: #FFFFFF">이메일무단수집거부</a></div>
@@ -312,6 +360,56 @@ Object.keys(BRANCHES).forEach(name => {
   regionBox.appendChild(b);
 });
 showRegion("서울");
+
+/* 자격과정 신청서 ─ 신청 내용을 받을 이메일 주소를 아래 따옴표 안에 넣어 주세요 */
+const APPLY_EMAIL = "a01075283582@gmail.com";
+const modal = document.getElementById("apply-modal");
+const form = document.getElementById("apply-form");
+const done = document.getElementById("apply-done");
+const statusEl = document.getElementById("apply-status");
+const submitBtn = document.getElementById("apply-submit");
+let lastTrigger = null;
+function openApply(course, trigger) {
+  lastTrigger = trigger;
+  form.reset();
+  statusEl.textContent = "";
+  document.getElementById("apply-course").value = course;
+  document.getElementById("apply-title").textContent = course;
+  form.hidden = false; done.hidden = true;
+  modal.hidden = false;
+  document.body.style.overflow = "hidden";
+  form.querySelector('input[name="이름"]').focus();
+}
+function closeApply() {
+  modal.hidden = true;
+  document.body.style.overflow = "";
+  if (lastTrigger) lastTrigger.focus();
+}
+document.querySelectorAll(".apply-btn").forEach(b => b.addEventListener("click", () => openApply(b.dataset.course, b)));
+modal.addEventListener("click", e => { if (e.target.closest("[data-close]")) closeApply(); });
+document.addEventListener("keydown", e => { if (e.key === "Escape" && !modal.hidden) closeApply(); });
+form.addEventListener("submit", async e => {
+  e.preventDefault();
+  statusEl.textContent = "";
+  if (!form.checkValidity()) { form.reportValidity(); return; }
+  if (!APPLY_EMAIL) { statusEl.textContent = "온라인 신청 준비 중입니다. 협회로 전화 문의해 주세요."; return; }
+  const data = Object.fromEntries(new FormData(form));
+  submitBtn.disabled = true; submitBtn.textContent = "보내는 중…";
+  try {
+    const res = await fetch("https://formsubmit.co/ajax/" + encodeURIComponent(APPLY_EMAIL), {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify({ ...data, _subject: "[자격과정 신청] " + data["과정"] + " - " + data["이름"], _template: "table", _captcha: "false" })
+    });
+    if (!res.ok) throw new Error(res.status);
+    form.hidden = true; done.hidden = false;
+    done.querySelector("button").focus();
+  } catch (err) {
+    statusEl.textContent = "전송하지 못했습니다. 잠시 후 다시 시도하시거나 협회로 전화 문의해 주세요.";
+  } finally {
+    submitBtn.disabled = false; submitBtn.textContent = "신청하기";
+  }
+});
 
 /* 협회소개 01·02 카드: 누르면 펼치고 다시 누르면 접기 */
 document.querySelectorAll(".about-toggle").forEach(btn => {
