@@ -56,6 +56,12 @@ a:focus-visible,button:focus-visible{outline:3px solid #1D4ED8;outline-offset:2p
 .field select{min-height:52px;padding:12px 14px;border:1px solid #C9D0DA;border-radius:10px;font-family:inherit;font-size:18px;color:#0F2A4A;background:#FFFFFF}
 .field select:focus{outline:3px solid #1D4ED8;outline-offset:1px;border-color:#1D4ED8}
 .cancel-submit{background:#B91C1C}
+#verify-open:hover strong{color:#C2410C}
+.verify-result{padding:18px;border-radius:12px;font-size:16px;line-height:1.7}
+.verify-result[hidden]{display:none}
+.verify-ok{background:#D1FAE5;color:#065F46}
+.verify-no{background:#FEF2F2;color:#991B1B}
+.link-btn{align-self:flex-start;border:0;background:transparent;padding:6px 0;font-family:inherit;font-size:15px;font-weight:700;color:#0F2A4A;text-decoration:underline;cursor:pointer}
 </style>
 </head>
 <body>
@@ -98,7 +104,7 @@ a:focus-visible,button:focus-visible{outline:3px solid #1D4ED8;outline-offset:2p
 <section aria-label="바로가기" style="background: #F4F6F9; border-bottom: 1px solid #E3E7ED">
 <div style="max-width: 1240px; margin: 0 auto; padding: 0 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr))">
 <a href="#courses" style="padding: 28px 20px; display: flex; flex-direction: column; gap: 4px"><strong style="font-size: 17px">자격검정 일정</strong><span style="font-size: 14px; color: #5A6472">시험 일정과 접수 기간 확인</span></a>
-<a href="#courses" style="padding: 28px 20px; display: flex; flex-direction: column; gap: 4px"><strong style="font-size: 17px">자격증 조회</strong><span style="font-size: 14px; color: #5A6472">자격 취득 여부 확인</span></a>
+<button type="button" id="verify-open" style="padding: 28px 20px; display: flex; flex-direction: column; align-items: flex-start; gap: 4px; border: 0; background: transparent; font-family: inherit; color: #0F2A4A; text-align: left; cursor: pointer"><strong style="font-size: 17px">자격증 조회</strong><span style="font-size: 14px; color: #5A6472">자격 취득 여부 확인</span></button>
 <a href="#branches" style="padding: 28px 20px; display: flex; flex-direction: column; gap: 4px"><strong style="font-size: 17px">교육기관 찾기</strong><span style="font-size: 14px; color: #5A6472">지역별 지사·교육원 안내</span></a>
 <a href="#share" style="padding: 28px 20px; display: flex; flex-direction: column; gap: 4px"><strong style="font-size: 17px">서식 다운로드</strong><span style="font-size: 14px; color: #5A6472">신청서·각종 양식 자료</span></a>
 </div>
@@ -115,7 +121,7 @@ a:focus-visible,button:focus-visible{outline:3px solid #1D4ED8;outline-offset:2p
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px">
 <button type="button" class="about-toggle" data-panel="greeting" aria-expanded="false" aria-controls="greeting"><span style="font-size: 14px; font-weight: 700; color: #8A94A3">01</span><strong style="font-size: 21px">인사말</strong><span style="font-size: 15px; color: #5A6472">회장 인사와 협회가 지향하는 가치</span><span style="margin-top: auto; font-size: 14px; font-weight: 700; color: var(--accent)"><span class="toggle-label">자세히 보기 +</span></span></button>
 <button type="button" class="about-toggle" data-panel="vision" aria-expanded="false" aria-controls="vision"><span style="font-size: 14px; font-weight: 700; color: #8A94A3">02</span><strong style="font-size: 21px">설립목적 · 비전</strong><span style="font-size: 15px; color: #5A6472">협회의 설립 취지와 중장기 비전</span><span style="margin-top: auto; font-size: 14px; font-weight: 700; color: var(--accent)"><span class="toggle-label">자세히 보기 +</span></span></button>
-<button type="button" class="about-toggle" data-panel="history" aria-expanded="false" aria-controls="history"><span style="font-size: 14px; font-weight: 700; color: #8A94A3">03</span><strong style="font-size: 21px">연혁 · 조직도</strong><span style="font-size: 15px; color: #5A6472">걸어온 길과 협회 조직 구성</span><span style="margin-top: auto; font-size: 14px; font-weight: 700; color: var(--accent)"><span class="toggle-label">자세히 보기 +</span></span></button>
+<button type="button" class="about-toggle" data-panel="history" aria-expanded="false" aria-controls="history"><span style="font-size: 14px; font-weight: 700; color: #8A94A3">03</span><strong style="font-size: 21px">연혁</strong><span style="font-size: 15px; color: #5A6472">협회가 걸어온 길</span><span style="margin-top: auto; font-size: 14px; font-weight: 700; color: var(--accent)"><span class="toggle-label">자세히 보기 +</span></span></button>
 <button type="button" class="about-toggle" data-panel="location" aria-expanded="false" aria-controls="location"><span style="font-size: 14px; font-weight: 700; color: #8A94A3">04</span><strong style="font-size: 21px">오시는 길</strong><span style="font-size: 15px; color: #5A6472">본회 위치와 교통편 안내</span><span style="margin-top: auto; font-size: 14px; font-weight: 700; color: var(--accent)"><span class="toggle-label">자세히 보기 +</span></span></button>
 </div>
 <div id="greeting" hidden style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 56px; align-items: start; margin-top: -16px; padding: 48px; border-radius: 20px; background: #F4F6F9">
@@ -370,6 +376,41 @@ a:focus-visible,button:focus-visible{outline:3px solid #1D4ED8;outline-offset:2p
 </div>
 </div>
 </div>
+<div id="verify-modal" class="modal" hidden>
+<div class="modal-backdrop" data-close></div>
+<div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="verify-title">
+<button type="button" class="modal-x" data-close aria-label="닫기">×</button>
+<form id="verify-form" class="apply-form">
+<p class="eyebrow">자격증 조회</p>
+<h2 id="verify-title">자격 취득 여부 확인</h2>
+<p style="margin: 0; font-size: 15px; color: #5A6472; line-height: 1.6">자격증에 적힌 정보를 정확히 입력해 주세요.</p>
+<label class="field">이름<input name="이름" required autocomplete="name" placeholder="홍길동"></label>
+<label class="field">생년월일<input name="생년월일" required inputmode="numeric" maxlength="8" pattern="[0-9]{8}" placeholder="예: 19600515" title="숫자 8자리로 입력해 주세요 (예: 19600515)"><small>숫자 8자리로 입력해 주세요</small></label>
+<label class="field">자격증 번호<input name="자격증번호" required placeholder="자격증에 적힌 번호"></label>
+<div class="verify-result" id="verify-result" role="status" hidden></div>
+<button type="submit" class="apply-submit" id="verify-submit">조회하기</button>
+<button type="button" class="link-btn" id="verify-to-request">조회가 안 되나요? 협회에 확인 요청하기</button>
+</form>
+<form id="vreq-form" class="apply-form" hidden>
+<p class="eyebrow">자격증 조회 요청</p>
+<h2>협회에 확인 요청하기</h2>
+<p style="margin: 0; font-size: 15px; color: #5A6472; line-height: 1.6">협회에서 확인한 뒤 입력하신 전화번호로 결과를 알려 드립니다.</p>
+<label class="field">이름<input name="이름" required autocomplete="name" placeholder="홍길동"></label>
+<label class="field">생년월일<input name="생년월일" required inputmode="numeric" maxlength="8" pattern="[0-9]{8}" placeholder="예: 19600515" title="숫자 8자리로 입력해 주세요 (예: 19600515)"></label>
+<label class="field">전화번호<input type="tel" name="전화번호" required autocomplete="tel" placeholder="예: 010-1234-5678"></label>
+<label class="field">자격증 번호 <small>(아시는 경우)</small><input name="자격증번호" placeholder="자격증에 적힌 번호"></label>
+<label class="consent"><input type="checkbox" name="개인정보동의" value="동의함" required><span><strong>[필수] 개인정보 수집·이용에 동의합니다.</strong><br>수집 항목: 이름, 생년월일, 전화번호, 자격증 번호 · 이용 목적: 자격 취득 여부 확인 및 안내 · 보유 기간: 확인 완료 후 3년</span></label>
+<p class="apply-status" id="vreq-status" role="alert"></p>
+<button type="submit" class="apply-submit" id="vreq-submit">확인 요청 보내기</button>
+<button type="button" class="link-btn" id="vreq-back">← 바로 조회로 돌아가기</button>
+</form>
+<div class="apply-done" id="vreq-done" hidden>
+<h2>확인 요청이 접수되었습니다</h2>
+<p>협회에서 확인한 뒤 입력하신 전화번호로<br>결과를 알려 드리겠습니다.</p>
+<button type="button" class="apply-submit" data-close style="min-width: 160px; padding: 0 24px">확인</button>
+</div>
+</div>
+</div>
 <footer style="background: #0B1F38; color: #B7C3D3">
 <div style="max-width: 1240px; margin: 0 auto; padding: 56px 24px; display: flex; flex-direction: column; gap: 20px; font-size: 14px">
 <div style="display: flex; flex-wrap: wrap; gap: 24px; color: #FFFFFF; font-weight: 700"><a href="#" style="color: #FFFFFF">개인정보처리방침</a><a href="#" style="color: #FFFFFF">이용약관</a><a href="#" style="color: #FFFFFF">이메일무단수집거부</a></div>
@@ -525,6 +566,95 @@ cForm.addEventListener("submit", async e => {
     cStatus.textContent = "전송하지 못했습니다. " + err.message + " 급하시면 협회(1577-2495)로 전화 주세요.";
   } finally {
     cSubmit.disabled = false; cSubmit.textContent = "신청 취소하기";
+  }
+});
+
+/* 자격증 조회 ─ 취득자 명단은 암호화(해시)된 값으로만 들어 있습니다.
+   명단을 추가하려면 담당자에게 요청해 주세요. 형식: "해시값": ["자격 종류", "취득일"] */
+const CERT_SALT = "KPKF-2026";
+const CERT_HOLDERS = {
+};
+const vModal = document.getElementById("verify-modal");
+const vForm = document.getElementById("verify-form");
+const vResult = document.getElementById("verify-result");
+const vSubmit = document.getElementById("verify-submit");
+const rForm = document.getElementById("vreq-form");
+const rStatus = document.getElementById("vreq-status");
+const rSubmit = document.getElementById("vreq-submit");
+const rDone = document.getElementById("vreq-done");
+const vOpenBtn = document.getElementById("verify-open");
+const norm = {
+  name: v => v.replace(/\s+/g, ""),
+  birth: v => v.replace(/[^0-9]/g, ""),
+  cert: v => v.replace(/[\s-]+/g, "").toUpperCase()
+};
+async function certHash(name, birth, cert) {
+  const text = CERT_SALT + "|" + norm.name(name) + "|" + norm.birth(birth) + "|" + norm.cert(cert);
+  const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(text));
+  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, "0")).join("");
+}
+function showVerifyView(view) {
+  vForm.hidden = view !== "verify"; rForm.hidden = view !== "request"; rDone.hidden = view !== "done";
+}
+function openVerify() {
+  vForm.reset(); rForm.reset(); vResult.hidden = true; rStatus.textContent = "";
+  showVerifyView("verify");
+  vModal.hidden = false; document.body.style.overflow = "hidden";
+  vForm.querySelector("input").focus();
+}
+function closeVerify() { vModal.hidden = true; document.body.style.overflow = ""; vOpenBtn.focus(); }
+vOpenBtn.addEventListener("click", openVerify);
+vModal.addEventListener("click", e => { if (e.target.closest("[data-close]")) closeVerify(); });
+document.addEventListener("keydown", e => { if (e.key === "Escape" && !vModal.hidden) closeVerify(); });
+document.getElementById("verify-to-request").addEventListener("click", () => {
+  const d = new FormData(vForm);
+  showVerifyView("request");
+  rForm.elements["이름"].value = d.get("이름") || "";
+  rForm.elements["생년월일"].value = d.get("생년월일") || "";
+  rForm.elements["자격증번호"].value = d.get("자격증번호") || "";
+  rForm.elements["전화번호"].focus();
+});
+document.getElementById("vreq-back").addEventListener("click", () => { showVerifyView("verify"); vForm.querySelector("input").focus(); });
+vForm.addEventListener("submit", async e => {
+  e.preventDefault();
+  if (!vForm.checkValidity()) { vForm.reportValidity(); return; }
+  const d = new FormData(vForm);
+  vSubmit.disabled = true; vSubmit.textContent = "조회 중…";
+  try {
+    const h = await certHash(d.get("이름"), d.get("생년월일"), d.get("자격증번호"));
+    const hit = CERT_HOLDERS[h];
+    vResult.hidden = false;
+    if (hit) {
+      vResult.className = "verify-result verify-ok";
+      vResult.innerHTML = "";
+      const t = document.createElement("strong"); t.textContent = "✓ 자격 취득이 확인되었습니다";
+      const line = document.createElement("div"); line.textContent = norm.name(d.get("이름")) + " · " + hit[0] + " · 취득일 " + hit[1];
+      vResult.append(t, line);
+    } else {
+      vResult.className = "verify-result verify-no";
+      vResult.textContent = "입력하신 정보와 일치하는 자격이 없습니다. 입력 내용을 다시 확인하시거나, 아래 '협회에 확인 요청하기'를 눌러 주세요.";
+    }
+  } catch (err) {
+    vResult.hidden = false; vResult.className = "verify-result verify-no";
+    vResult.textContent = "이 브라우저에서는 바로 조회가 되지 않습니다. 아래 '협회에 확인 요청하기'를 이용해 주세요.";
+  } finally {
+    vSubmit.disabled = false; vSubmit.textContent = "조회하기";
+  }
+});
+rForm.addEventListener("submit", async e => {
+  e.preventDefault();
+  rStatus.textContent = "";
+  if (!rForm.checkValidity()) { rForm.reportValidity(); return; }
+  const data = Object.fromEntries(new FormData(rForm));
+  rSubmit.disabled = true; rSubmit.textContent = "보내는 중…";
+  try {
+    await sendMail({ ...data, _subject: "[자격증 조회 요청] " + data["이름"] });
+    showVerifyView("done");
+    rDone.querySelector("button").focus();
+  } catch (err) {
+    rStatus.textContent = "전송하지 못했습니다. " + err.message + " 급하시면 협회(1577-2495)로 전화 주세요.";
+  } finally {
+    rSubmit.disabled = false; rSubmit.textContent = "확인 요청 보내기";
   }
 });
 </script>
