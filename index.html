@@ -99,7 +99,15 @@ a:focus-visible,button:focus-visible{outline:3px solid #1D4ED8;outline-offset:2p
 <a href="#branches" style="padding: 15px 27px; border-radius: 10px; border: 1px solid #5B7393; color: #FFFFFF; font-weight: 700; font-size: 16px">전국지사 찾기</a>
 </div>
 </div>
-<div style="aspect-ratio: 4 / 3; border-radius: 16px; background: #1B3A60; border: 1px dashed #5B7393; display: flex; align-items: center; justify-content: center; color: #B7C3D3; font-size: 15px">[대표 이미지 · 교육 현장 사진]</div>
+<a href="#notices" id="hero-notice" style="display: flex; flex-direction: column; border-radius: 18px; overflow: hidden; background: #FFFFFF; color: #0F2A4A; box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25)">
+<img src="notice-tournament.jpg" alt="협회장배 전국대회 포스터" style="display: block; width: 100%; height: 240px; object-fit: cover; object-position: center 22%">
+<span style="display: flex; flex-direction: column; gap: 12px; padding: 24px 28px 28px">
+<span style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px"><span style="padding: 3px 10px; border-radius: 6px; background: #B91C1C; color: #FFFFFF; font-size: 13px; font-weight: 800">공지</span><span style="padding: 3px 10px; border-radius: 6px; background: #FDEBDD; color: #9A3412; font-size: 13px; font-weight: 800">참가자 모집 중</span></span>
+<strong style="font-size: 22px; line-height: 1.4; font-weight: 800; letter-spacing: -0.02em">협회장배 파크골프 전국대회</strong>
+<span style="display: grid; grid-template-columns: 64px 1fr; gap: 4px 10px; font-size: 15px; color: #3B4552"><b style="color: #0F2A4A">일시</b><span>2026년 11월 28일 (토)</span><b style="color: #0F2A4A">장소</b><span>성주무릉도원 파크골프장</span><b style="color: #0F2A4A">신청</b><span>11월 15일까지 · 선착순 144명</span></span>
+<span style="margin-top: 4px; font-size: 15px; font-weight: 800; color: var(--accent)">공지 자세히 보기 →</span>
+</span>
+</a>
 </div>
 </section>
 
@@ -344,7 +352,7 @@ a:focus-visible,button:focus-visible{outline:3px solid #1D4ED8;outline-offset:2p
 <p style="margin: 0; font-size: 17px; color: #5A6472">제목을 누르면 자세한 내용을 볼 수 있습니다.</p>
 </div>
 <div style="border-top: 2px solid #0F2A4A">
-<details style="border-bottom: 1px solid #E3E7ED">
+<details id="notice-1" style="border-bottom: 1px solid #E3E7ED">
 <summary style="list-style: none; cursor: pointer; padding: 24px 8px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px">
 <span style="padding: 4px 12px; border-radius: 6px; background: #FDEBDD; color: #9A3412; font-size: 14px; font-weight: 800">대회</span>
 <strong style="flex: 1; min-width: 240px; font-size: 19px; font-weight: 800">협회장배 파크골프 전국대회 참가자 모집 안내</strong>
@@ -731,6 +739,9 @@ rForm.addEventListener("submit", async e => {
     rSubmit.disabled = false; rSubmit.textContent = "확인 요청 보내기";
   }
 });
+
+/* 첫 화면 공지 카드: 누르면 공지사항으로 이동하고 해당 공지를 펼칩니다 */
+document.getElementById("hero-notice").addEventListener("click", () => { document.getElementById("notice-1").open = true; });
 </script>
 </body>
 </html>
