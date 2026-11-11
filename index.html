@@ -64,6 +64,19 @@ a:focus-visible,button:focus-visible{outline:3px solid #1D4ED8;outline-offset:2p
 .link-btn{align-self:flex-start;border:0;background:transparent;padding:6px 0;font-family:inherit;font-size:15px;font-weight:700;color:#0F2A4A;text-decoration:underline;cursor:pointer}
 #notices summary::-webkit-details-marker{display:none}
 #notices summary:hover strong{color:#C2410C}
+.branch-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;align-items:start}
+@media (max-width:860px){.branch-layout{grid-template-columns:1fr}.branch-map{position:static!important}}
+.branch-map{position:sticky;top:24px;display:flex;flex-direction:column;gap:14px;padding:20px;border-radius:18px;background:#FFFFFF;border:1px solid #E3E7ED;box-shadow:0 2px 12px rgba(15,42,74,.08)}
+.branch-card{display:flex;flex-direction:column;gap:8px;padding:18px 20px;border-radius:14px;background:#FFFFFF;border:1px solid #E3E7ED}
+.branch-card.on{background:#F4F6F9;border:2px solid #0F2A4A;padding:17px 19px}
+.branch-card .rg{padding:2px 10px;border-radius:6px;background:#F4F6F9;color:var(--accent);font-size:13px;font-weight:800}
+.branch-card.on .rg{background:#FFFFFF}
+.branch-card .nm{font-size:18px;font-weight:800}
+.branch-card .mt{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:15px;color:#3B4552}
+.branch-card .mt a{font-weight:700}
+.branch-card .ad{font-size:14px;color:#5A6472}
+.branch-card .go{align-self:flex-start;min-height:40px;padding:8px 14px;border-radius:8px;border:1px solid #C9D0DA;background:#FFFFFF;color:#0F2A4A;font-family:inherit;font-size:14px;font-weight:700;cursor:pointer}
+.branch-card .go:hover{border-color:#0F2A4A}
 </style>
 </head>
 <body>
@@ -296,11 +309,16 @@ a:focus-visible,button:focus-visible{outline:3px solid #1D4ED8;outline-offset:2p
 <div id="regions" role="group" aria-label="지역 선택" style="display: flex; flex-wrap: wrap; gap: 8px">
 
 </div>
-<div style="overflow-x: auto; border: 1px solid #E3E7ED; border-radius: 14px">
-<table style="width: 100%; min-width: 720px; border-collapse: collapse; font-size: 15px">
-<thead><tr style="background: #F4F6F9; text-align: left"><th style="padding: 16px 24px; font-weight: 700">지역</th><th style="padding: 16px 24px; font-weight: 700">지사명</th><th style="padding: 16px 24px; font-weight: 700">지사장</th><th style="padding: 16px 24px; font-weight: 700">주소</th><th style="padding: 16px 24px; font-weight: 700">연락처</th></tr></thead>
-<tbody id="branch-rows"></tbody>
-</table>
+<div class="branch-layout">
+<div id="branch-list" style="display: flex; flex-direction: column; gap: 12px"></div>
+<div class="branch-map">
+<iframe id="branch-map" title="지사 위치 지도" loading="lazy" referrerpolicy="no-referrer-when-downgrade" style="width: 100%; height: 400px; border: 0; border-radius: 12px; background: #F1F4F8"></iframe>
+<div style="display: flex; flex-direction: column; gap: 4px; padding: 0 4px">
+<strong id="branch-map-name" style="font-size: 18px; font-weight: 800"></strong>
+<span id="branch-map-addr" style="font-size: 15px; color: #5A6472"></span>
+<span id="branch-map-note" style="font-size: 13px; color: #9A3412"></span>
+</div>
+</div>
 </div>
 </section>
 
@@ -504,30 +522,56 @@ a:focus-visible,button:focus-visible{outline:3px solid #1D4ED8;outline-offset:2p
 </div>
 <script>
 /* 전국지사현황 데이터: 실제 지사 정보로 바꿔 주세요 */
+/* 전국지사 데이터: [지사명, 지사장, 주소, 연락처, 지도 검색어, 정확한 주소 여부] */
 const BRANCHES = {
-  "서울": [["서울 본사","-","서울시 서초구 반포대로28길 76-10","1577-2495"]],
-  "경상": [["대구지사","-","추후 안내","추후 안내"]],
-  "전라": [["전남지사 (순천·호남거점)","-","추후 안내","추후 안내"]]
+  "전국": [["전국 총괄본부","김건우 총괄본부장","추후 안내","010-7528-3582","",false]],
+  "서울": [["서울 본사","백옥례 총회장","서울시 서초구 반포대로28길 76-10","010-2244-8697","서울특별시 서초구 반포대로28길 76-10",true]],
+  "대구": [["대구지사","김병희 지사장","추후 안내","010-5264-1467","대구광역시",false],["통합 수성지사","이도영 지사장","추후 안내","010-3012-3331","대구광역시 수성구",false]],
+  "경북": [["경북지사","서혜언 지사장","추후 안내","010-3601-9015","경상북도",false],["구미지사","-","추후 안내","추후 안내","경상북도 구미시",false]],
+  "경남": [["경남본부","김태희 본부장","추후 안내","010-6703-7091","경상남도",false]],
+  "전남": [["전남지사 (순천·호남거점)","유훈진 지사장","추후 안내","010-2381-7727","전라남도 순천시",false]]
 };
 const regionBox = document.getElementById("regions");
-const rowsBox = document.getElementById("branch-rows");
-function showRegion(name) {
-  regionBox.querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", b.textContent === name ? "true" : "false"));
-  rowsBox.replaceChildren(...(BRANCHES[name] || []).map(cols => {
-    const tr = document.createElement("tr");
-    tr.className = "branch-row";
-    tr.style.borderTop = "1px solid #E3E7ED";
-    [name, ...cols].forEach(text => { const td = document.createElement("td"); td.textContent = text; tr.appendChild(td); });
-    return tr;
-  }));
+const listBox = document.getElementById("branch-list");
+const mapFrame = document.getElementById("branch-map");
+let currentRegion = "전체", selectedBranch = "서울 본사";
+function el(tag, cls, text) { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+function selectBranch(reg, b, scroll) {
+  selectedBranch = b[0];
+  const [name, , addr, , q, exact] = b;
+  document.getElementById("branch-map-name").textContent = name;
+  document.getElementById("branch-map-addr").textContent = addr !== "추후 안내" ? addr : (q || "위치 준비 중");
+  document.getElementById("branch-map-note").textContent = !q ? "위치 정보가 등록되면 지도에 표시됩니다." : (exact ? "" : "대략적인 위치예요. 정확한 주소가 등록되면 바로 바뀝니다.");
+  const zoom = exact ? 16 : (/[시구]$/.test(q) ? 12 : 9);
+  mapFrame.src = "https://maps.google.com/maps?q=" + encodeURIComponent(q || "대한민국") + "&hl=ko&z=" + (q ? zoom : 7) + "&output=embed";
+  listBox.querySelectorAll(".branch-card").forEach(c => c.classList.toggle("on", c.dataset.name === name));
+  if (scroll && window.matchMedia("(max-width: 860px)").matches) mapFrame.scrollIntoView({ behavior: "smooth", block: "center" });
 }
-Object.keys(BRANCHES).forEach(name => {
+function showRegion(name) {
+  currentRegion = name;
+  regionBox.querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", b.textContent === name ? "true" : "false"));
+  const regs = name === "전체" ? Object.keys(BRANCHES) : [name];
+  listBox.replaceChildren(...regs.flatMap(reg => BRANCHES[reg].map(b => {
+    const card = el("div", "branch-card"); card.dataset.name = b[0];
+    const head = el("div"); head.style.cssText = "display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px";
+    head.append(el("span", "rg", reg), el("strong", "nm", b[0]));
+    const meta = el("div", "mt"); meta.append(el("span", null, b[1]));
+    if (/^[0-9-]+$/.test(b[3])) { const a = el("a", null, b[3]); a.href = "tel:" + b[3]; meta.append(a); } else meta.append(el("span", null, b[3]));
+    const go = el("button", "go", "📍 지도에서 보기"); go.type = "button";
+    go.addEventListener("click", () => selectBranch(reg, b, true));
+    card.append(head, meta, el("div", "ad", b[2]), go);
+    return card;
+  })));
+  const first = regs.flatMap(r => BRANCHES[r].map(b => [r, b])).find(([, b]) => b[0] === selectedBranch) || [regs[0], BRANCHES[regs[0]][0]];
+  selectBranch(first[0], first[1], false);
+}
+["전체", ...Object.keys(BRANCHES)].forEach(name => {
   const b = document.createElement("button");
   b.type = "button"; b.className = "region-btn"; b.textContent = name;
   b.addEventListener("click", () => showRegion(name));
   regionBox.appendChild(b);
 });
-showRegion("서울");
+showRegion("전체");
 
 /* 이메일 전송 공통 함수: 실패하면 원인을 알려 줍니다 */
 async function sendMail(payload) {
