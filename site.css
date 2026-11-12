@@ -91,3 +91,38 @@ a:focus-visible,button:focus-visible{outline:3px solid #1D4ED8;outline-offset:2p
   header nav{width:100%;gap:2px!important}
   .nav-link{padding:8px 10px;font-size:15px}
 }
+
+/* ---- 첫 화면 슬라이드 ---- */
+.hero{background:#0F2A4A;color:#FFFFFF}
+.hero-slider{position:relative;max-width:1240px;margin:0 auto;padding:72px 24px 40px}
+.hero-track{display:grid}
+.hero-slide{grid-area:1/1;opacity:0;visibility:hidden;transform:translateX(32px);transition:opacity .6s ease,transform .6s ease,visibility 0s linear .6s}
+.hero-slide.is-active{opacity:1;visibility:visible;transform:none;transition:opacity .6s ease,transform .6s ease}
+.hero-inner{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:56px;align-items:center;min-height:420px}
+.hero-art{display:flex;justify-content:center}
+.hero-art img{width:min(340px,80%);opacity:.9;filter:drop-shadow(0 20px 40px rgba(0,0,0,.35))}
+.hero-btn{display:inline-flex;align-items:center;min-height:54px;padding:0 26px;border-radius:10px;border:1px solid #5B7393;color:#FFFFFF;font-weight:700;font-size:16px}
+.hero-btn:hover{color:#FFFFFF;border-color:#FFFFFF}
+.hero-btn.primary{background:var(--accent);border-color:var(--accent)}
+.hero-facts{margin:0;display:grid;grid-template-columns:72px 1fr;gap:8px 14px;font-size:18px;color:#D5DCE6}
+.hero-facts dt{font-weight:800;color:#FDBA74}
+.hero-facts dd{margin:0}
+.hero-poster{display:flex;justify-content:center}
+.hero-poster img{max-height:460px;max-width:100%;border-radius:16px;box-shadow:0 16px 40px rgba(0,0,0,.35)}
+.hero-controls{display:flex;justify-content:center;align-items:center;gap:10px;padding-top:28px}
+.hero-ctl{width:44px;height:44px;border-radius:50%;border:1px solid #5B7393;background:transparent;color:#FFFFFF;font-family:inherit;font-size:22px;line-height:1;cursor:pointer}
+.hero-ctl:hover{border-color:#FFFFFF}
+.hero-pause{font-size:12px;letter-spacing:-2px}
+.hero-dot{width:12px;height:12px;padding:0;border-radius:999px;border:0;background:#5B7393;cursor:pointer;transition:width .3s}
+.hero-dot[aria-current="true"]{width:36px;background:#FDBA74}
+.hero-dot::before{content:"";display:block;width:44px;height:44px;margin:-16px 0 0 -16px}
+@media (max-width:860px){
+  .hero-inner{grid-template-columns:1fr;gap:32px;min-height:0}
+  .hero-art{display:none}
+  .hero-slider{padding:48px 20px 32px}
+  .hero h1{font-size:36px!important}
+  .hero h2{font-size:32px!important}
+  .hero-facts{font-size:16px}
+  .hero-poster img{max-height:340px}
+}
+@media (prefers-reduced-motion:reduce){.hero-slide,.hero-slide.is-active{transition:none;transform:none}}

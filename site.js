@@ -260,3 +260,46 @@ rForm.addEventListener("submit", async e => {
 });
 
 }
+
+/* 첫 화면 슬라이드: 7초마다 넘어가고, 마우스를 올리거나 버튼을 누르면 멈춥니다 */
+if (document.getElementById("hero-slider")) {
+  const root = document.getElementById("hero-slider");
+  const slides = [...root.querySelectorAll(".hero-slide")];
+  const dots = [...root.querySelectorAll(".hero-dot")];
+  const pauseBtn = root.querySelector('[data-hero="pause"]');
+  const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let cur = 0, timer = null, userPaused = reduce, hover = false;
+  function show(i) {
+    cur = (i + slides.length) % slides.length;
+    slides.forEach((s, k) => {
+      const on = k === cur;
+      s.classList.toggle("is-active", on);
+      s.setAttribute("aria-hidden", on ? "false" : "true");
+      s.inert = !on;
+    });
+    dots.forEach((d, k) => d.setAttribute("aria-current", k === cur ? "true" : "false"));
+  }
+  function tick() { clearInterval(timer); timer = null; if (!userPaused && !hover) timer = setInterval(() => show(cur + 1), 7000); }
+  function setPaused(p) {
+    userPaused = p;
+    pauseBtn.textContent = p ? "▶" : "❚❚";
+    pauseBtn.setAttribute("aria-label", p ? "자동 넘김 다시 시작" : "자동 넘김 멈추기");
+    tick();
+  }
+  root.querySelector('[data-hero="prev"]').addEventListener("click", () => { show(cur - 1); tick(); });
+  root.querySelector('[data-hero="next"]').addEventListener("click", () => { show(cur + 1); tick(); });
+  pauseBtn.addEventListener("click", () => setPaused(!userPaused));
+  dots.forEach((d, k) => d.addEventListener("click", () => { show(k); tick(); }));
+  root.addEventListener("mouseenter", () => { hover = true; tick(); });
+  root.addEventListener("mouseleave", () => { hover = false; tick(); });
+  root.addEventListener("focusin", () => { hover = true; tick(); });
+  root.addEventListener("focusout", e => { if (!root.contains(e.relatedTarget)) { hover = false; tick(); } });
+  let x0 = null;
+  root.addEventListener("touchstart", e => { x0 = e.touches[0].clientX; }, { passive: true });
+  root.addEventListener("touchend", e => {
+    if (x0 === null) return;
+    const dx = e.changedTouches[0].clientX - x0; x0 = null;
+    if (Math.abs(dx) > 50) { show(cur + (dx < 0 ? 1 : -1)); tick(); }
+  });
+  show(0); setPaused(userPaused);
+}
